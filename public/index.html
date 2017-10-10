@@ -1,0 +1,143 @@
+<!-- <!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="nb-NO"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0;
+        }
+        header {
+            background-color:rgba(255,0,0,255);
+            /*width: 100%;*/
+            max-width: 100% !important;
+            /*height: 100px;*/
+            height: 100px;
+            }
+            img.resize {
+                max-width:25%; /* you can use % */
+                height: auto;
+            }
+        nav {
+           font-family: Arial, Helvetica, sans-serif;
+            font-size: 24;
+            background-color: black;
+            color: white;
+            padding-left: 2%;
+            }
+        section {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18;
+            padding-left: 2%;
+            padding-top: 5px;
+
+        }
+        form {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18;
+            box-shadow: 2px 2px 1px grey;
+            border-radius: 5px;
+            background-color: rgb(243, 241, 241);
+            width: auto;
+            height: auto;
+            display: inline-block;
+            vertical-align: middle;
+            border:solid 1px;
+            padding-left: 2%;
+            padding-bottom: 5px; 
+            padding-right: 2%;
+        }
+
+        form,input,#id_printer,option {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18;
+        }
+        #id_submit {
+            float: right;
+            background-color: rgb(174, 171, 171);
+            box-shadow: 1px 1px 0.5px grey;
+            border-radius: 5px;
+        }
+        #id_antKolli {
+            width: 25%;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="./../grafikk/kontrareturBanner.svg" alt="Kontraretur">
+    </header>
+    <nav>
+        <a href="#" style="color:white;">HJEM</a>
+    </nav>
+    <section>
+
+        <form action="" method="post">
+            <label for="nm_kundenummer">Kundenummer</label><br>
+            <input type="text" name="nm_kundenummer" id="id_kundenummer" size="small"/><br>
+            <label for="nm_antKolli">Antall kolli</label><br>
+            <input type="number" name="nm_antKolli" id="id_antKolli" size="small"/>
+            <br><br>
+            <label for="nm_printer">Velg skriver</label>
+            <select name="nm_printer" id="id_printer">
+                    <option value="1">zebra1</option>
+                    <option value="2">zebra2</option>
+            </select>
+            <br><br>
+            <input type="submit" id="id_submit" value="Skriv ut">
+           
+        </form>
+               
+
+    </section>
+    <aside>
+
+    </aside>
+    <footer>
+        <div id="test"></div>
+    </footer>
+   
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+   
+</body>
+<script>
+    window.onload = fokuserKundenummer();
+    function fokuserKundenummer() {
+        document.getElementById("id_kundenummer").focus();
+        //document.getElementById("id_submit").setAttribute("hidden", '');
+        document.getElementById("id_submit").style.visibility = 'hidden';
+    }
+
+    var test = document.getElementById("test");
+
+    var knappevisning = document.getElementById("id_kundenummer");
+    knappevisning.addEventListener("focusout", visSubmit);
+
+    function visSubmit() {
+        var domelement = document.getElementById("id_submit");
+        if ( isNumeric( domelement.value ) == true ) {
+            //domelement.style.visibility = 'visible';
+            test.innerHTML = "Er numerisk";
+        } else {
+            //domelement.style.borderColor = 'red';
+            test.innerHTML = "Er IKKE numerisk";
+        }
+        //.style.visibility = 'visible';
+    }   
+    
+    function isNumeric(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+        }
+   
+</script>
+</html>
