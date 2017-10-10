@@ -20,12 +20,16 @@ app.get("/", (req, res) => {
     res.sendFile('./pubic/index.html');
 });
 
-app.post("/", (req, res) => {
-    let body = _.pick(req.body, ['nm_kundenummer']);
+app.post("/", (req, res, next) => {
+    console.log(req.body);
+    console.log(req.body);
+    let body = _.pick(req.body, ['kundenummer']);
     console.log("body ", body);
     res.send({
-        "data" : "Repsonsdata fra node"
+        "Sender" : "nodeserver",
+        "returdata" : body
     });
+    next();
 });
 
 

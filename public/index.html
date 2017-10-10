@@ -80,7 +80,8 @@
     </nav>
     <section>
 
-        <form action="" method="post">
+    <!--    <form action="" method="post"> -->
+        <form action="" >
             <label for="nm_kundenummer">Kundenummer</label><br>
             <input type="text" name="nm_kundenummer" id="id_kundenummer" size="small"/><br>
             <label for="nm_antKolli">Antall kolli</label><br>
@@ -141,5 +142,29 @@
         return !isNaN(parseFloat(n)) && isFinite(n);
         }
    
+    var knappetrykk = document.getElementById("id_submit");
+    knappetrykk.addEventListener("click", function (evnt) {
+        evnt.preventDefault();
+        let kundenummer = document.getElementById("id_kundenummer").value;
+        let dataTilServer = "kundenummer=" + kundenummer;
+        let request = new XMLHttpRequest();
+        
+        request.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                //mottak data
+                // console.log("Fra server? ", this.responseText);
+                let oppslagsdata = JSON.parse(this.responseText);
+                document.getElementById("testval").innerHTML = oppslagsdata.returdata.kundenummer;
+            } else {
+                document.getElementById("testval").innerHTML = "Venter";
+            }
+        };
+        request.open("POST", "/", true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        console.log("Lokale data som sendes til serveren", dataTilServer);
+        request.send(dataTilServer);
+
+    });
+    
 </script>
 </html>
