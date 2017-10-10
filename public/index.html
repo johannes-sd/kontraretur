@@ -103,6 +103,7 @@
     </aside>
     <footer>
         <div id="test"></div>
+        <div id="testval"></div>
     </footer>
    
     <!--[if lt IE 7]>
@@ -125,14 +126,15 @@
 
     function visSubmit() {
         var domelement = document.getElementById("id_submit");
-        if ( isNumeric( domelement.value ) == true ) {
+        testval.innerHTML = isNumeric(domelement.value);
+        if ( isNumeric( domelement.value ) === true ) {
             //domelement.style.visibility = 'visible';
             test.innerHTML = "Er numerisk";
         } else {
             //domelement.style.borderColor = 'red';
             test.innerHTML = "Er IKKE numerisk";
         }
-        //.style.visibility = 'visible';
+        document.getElementById("id_submit").style.visibility = 'visible';
     }   
     
     function isNumeric(n) {
